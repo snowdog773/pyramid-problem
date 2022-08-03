@@ -1,3 +1,5 @@
+//createPyramid takes the data input and arranges it in an array of nested arrays, where the first array
+//has one entry, the second two, and so on to represent the levels of the pyramid.
 function createPyramid(layers, data) {
   let pyramid = [];
   let start = 0;
@@ -9,6 +11,7 @@ function createPyramid(layers, data) {
   }
   return pyramid;
 }
+//createPossiblePaths returns an array containing all the possible paths through an array with N rows
 
 function createPossiblePaths(layers) {
   const possiblePaths = [];
@@ -44,6 +47,8 @@ function createPossiblePaths(layers) {
   } while (possiblePaths[possiblePaths.length] !== path);
   return possiblePaths;
 }
+
+//Finally findShortestPath appllies all the possible paths to the data array and evaluates which is shortest.
 function findShortestPath(rows, numbers) {
   const pyramid = createPyramid(rows, numbers);
   const paths = createPossiblePaths(rows);
