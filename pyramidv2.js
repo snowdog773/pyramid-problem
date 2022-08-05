@@ -8,9 +8,10 @@ function findShortestPath(rows, data) {
     start = start + i;
   }
   let cumulative = [];
-  //initialise the first row of cumultative array
+  //initialise the first row of cumulative array
   cumulative.push([{ runningTotal: pyramid[0][0], lastNode: 0 }]);
-  //subsequent rows are created by adding each
+  //subsequent rows are created from the previous row
+  // plus the corresponding pyramid values
   for (i = 0; i < rows - 1; i++) {
     let newRow = [];
     for (j = 0; j < cumulative[i].length; j++) {
