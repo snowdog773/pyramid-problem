@@ -11,7 +11,7 @@ function findShortestPath(rows, data) {
   //initialise the first row of cumultative array
   cumulative.push([{ runningTotal: pyramid[0][0], lastNode: 0 }]);
   //subsequent rows are created by adding each
-  for (i = 0; i <= rows - 2; i++) {
+  for (i = 0; i < rows - 1; i++) {
     let newRow = [];
     for (j = 0; j < cumulative[i].length; j++) {
       newRow.push({
@@ -36,7 +36,6 @@ function findShortestPath(rows, data) {
   return lowest;
 }
 
-//should be 75+95+17+18+4+1+2+4+26+33+65+28+17+53+9
 findShortestPath(
   15,
   [
@@ -51,7 +50,3 @@ findShortestPath(
 );
 
 findShortestPath(4, [3, 7, 4, 2, 4, 6, 8, 5, 9, 3]);
-// 3
-// 7 4
-// 2 4 6
-// 8 5 9 3
