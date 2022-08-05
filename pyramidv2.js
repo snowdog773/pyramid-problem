@@ -8,34 +8,24 @@ function findShortestPath(rows, data) {
     start = start + i;
   }
   let cumulative = [];
-  //initialise the cumultative array
+  //initialise the first row of cumultative array
   cumulative.push([pyramid[0][0]]);
-  //subsequent layers are calculated by adding each
-  console.log(cumulative);
+  //subsequent rows are created by adding each
   for (i = 0; i <= rows - 2; i++) {
-    let cumulativeRow = [];
-    cumulative[i][0][0]
-      ? (cumulativeRow = cumulative.flat(2))
-      : (cumulativeRow = [cumulative[i][0]]);
+    let newRow = [];
+    for (j = 0; j < cumulative[i].length; j++) {
+      newRow.push(
+        cumulative[i][j] + pyramid[i + 1][Math.floor(j / Math.pow(2, j))]
+      );
+      newRow.push(
+        cumulative[i][j] + pyramid[i + 1][Math.floor(j / Math.pow(2, j)) + 1]
+      );
+    }
 
-    cumulative.push(
-      cumulativeRow.map((e, index) => [
-        e + pyramid[i + 1][index - index / 2],
-        e + pyramid[i + 1][index - index / 2 + 1],
-      ])
-    );
-
-    // cumulative.map((e) => {
-    //   cumulative.push(
-    //     e.map((f, index) => [
-    //       f + pyramid[i + 1][index],
-    //       f + pyramid[i + 1][index + 1],
-    //     ])
-    //   );
-    // });
+    cumulative.push(newRow);
   }
-
-  console.log(cumulative);
+  const lowest = Math.min(cumulative[rows - 1][0]);
+  console.log(cumulative, lowest);
 }
 
 //should be 75+95+17+18+4+1+2+4+26+33+65+28+17+53+9
@@ -52,8 +42,8 @@ findShortestPath(
   ]
 );
 
-findShortestPath(4, [3, 7, 4, 2, 4, 6, 8, 5, 9, 3]);
-// 3
+// findShortestPath(4, [3, 7, 4, 2, 4, 6, 8, 5, 9, 3]);
+// // 3
 // 7 4
 // 2 4 6
 // 8 5 9 3
