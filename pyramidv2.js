@@ -1,9 +1,9 @@
-function findShortestPath(rows, data) {
+export function findShortestPath(rows, data) {
   //First step is to represent the pyramid as a series of arrays
   let pyramid = [];
   let start = 0;
   // start is the start index for the data array as it is separated into the pyramid nested array
-  for (i = 1; i <= rows; i++) {
+  for (let i = 1; i <= rows; i++) {
     pyramid.push(data.slice(start, start + i));
 
     start = start + i;
@@ -16,9 +16,9 @@ function findShortestPath(rows, data) {
   cumulative.push([{ runningTotal: pyramid[0][0], lastNode: 0 }]);
   //subsequent rows are created from the previous row
   // plus the corresponding pyramid values
-  for (i = 0; i < rows - 1; i++) {
+  for (let i = 0; i < rows - 1; i++) {
     let newRow = [];
-    for (j = 0; j < cumulative[i].length; j++) {
+    for (let j = 0; j < cumulative[i].length; j++) {
       newRow.push({
         runningTotal:
           cumulative[i][j].runningTotal +
